@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background: #000;
   color: #fff;
   font-family: Arial, sans-serif;
   display: flex;
@@ -12,70 +12,40 @@ body {
 }
 
 .container {
-  max-width: 800px;
-  padding: 20px;
+  width: 90%;
+  max-width: 600px;
 }
 
 h1 {
-  font-size: 4em;
-  margin: 0;
-  transition: all 0.5s ease;
+  font-size: 3em;
+  margin: 0.2em 0;
 }
 
 h2 {
-  font-size: 2em;
-  margin: 10px 0 30px;
-  transition: all 0.5s ease;
+  font-size: 1.5em;
+  margin: 0.2em 0 1em;
 }
 
 .small-title {
   font-size: 2em;
-  margin-bottom: 5px;
 }
 
 .small-subtitle {
   font-size: 1em;
-  margin-bottom: 20px;
 }
 
-.menu-btn {
-  display: block;
-  width: 200px;
-  margin: 10px auto;
-  padding: 10px;
+button {
+  padding: 10px 20px;
   font-size: 1.2em;
+  margin: 10px;
   border: none;
-  background-color: #ff4d4d;
-  color: white;
   border-radius: 5px;
+  background: #555;
+  color: #fff;
   cursor: pointer;
 }
 
-.menu-btn:disabled {
+button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-#muteButton {
-  margin-top: 30px;
-  padding: 8px 16px;
-  font-size: 1em;
-  background-color: #555;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2.5em;
-  }
-  h2 {
-    font-size: 1.2em;
-  }
-  .menu-btn {
-    width: 150px;
-    font-size: 1em;
-  }
 }
