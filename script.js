@@ -1,22 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const mainTitle = document.getElementById("main-title");
-  const subTitle = document.getElementById("sub-title");
-  const menu = document.getElementById("menu");
+const bgMusic = document.getElementById("bgMusic");
+const muteBtn = document.getElementById("muteBtn");
 
-  function showMenu() {
-    mainTitle.style.fontSize = "2em";
-    subTitle.style.fontSize = "0.8em";
-    menu.style.display = "flex";
-  }
+muteBtn.addEventListener("click", () => {
+  bgMusic.muted = !bgMusic.muted;
+  muteBtn.textContent = bgMusic.muted ? "Unmute" : "Mute";
+});
 
-  // Un clic n'importe où pour commencer
-  document.body.addEventListener("click", function handler() {
-    showMenu();
-    document.body.removeEventListener("click", handler);
-  });
-
-  // À terme : détecter si une sauvegarde existe (exemple)
-  if (localStorage.getItem("brad_save")) {
-    document.getElementById("continue").disabled = false;
-  }
+// BONUS : afficher les crédits quand on clique sur le bouton crédits
+const creditsBtn = document.getElementById("creditsBtn");
+creditsBtn.addEventListener("click", () => {
+  alert("Site imaginé par Lilyo\nMusique : échantillons créés par Remixlive, assemblés par Lilyo");
 });
