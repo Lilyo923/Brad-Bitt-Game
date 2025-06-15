@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Brad Bitt, mais le jeu</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Brad Bitt</h1>
-    <h2>mais le jeu</h2>
-    <div class="menu">
-      <button id="startBtn">Commencer</button>
-      <button id="continueBtn" disabled>Continuer</button>
-      <button id="settingsBtn">Paramètres</button>
-      <button id="creditsBtn">Crédits</button>
-      <button id="muteBtn">Mute</button>
-    </div>
-  </div>
+    <h1 id="gameTitle">Brad Bitt</h1>
+    <h2 id="gameSubtitle">mais le jeu</h2>
 
-  <audio id="bgMusic" src="https://www.dropbox.com/scl/fi/z4i33e10xspc5ip1xlvd3/menu.mp3?rlkey=0l8nvmfnqv7fkwiwt581l7j8y&st=af3grmuo&raw=1" loop autoplay></audio>
+    <div id="menu" style="display: none;">
+      <button class="menu-btn">Nouvelle partie</button>
+      <button class="menu-btn" id="continueBtn" disabled>Continuer</button>
+      <button class="menu-btn">Paramètres</button>
+      <button class="menu-btn">Crédits</button>
+    </div>
+
+    <button id="muteButton">Mute</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
