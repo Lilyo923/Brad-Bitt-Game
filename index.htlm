@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brad Bitt - mais le jeu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="title-container">
+    <h1 id="main-title">Brad Bitt</h1>
+    <p id="sub-title">mais le jeu</p>
+  </div>
+  
+  <div class="menu" id="menu">
+    <button id="new-game">Nouvelle Partie</button>
+    <button id="continue" disabled>Continuer</button>
+    <button id="settings">Paramètres</button>
+    <button id="credits">Crédits</button>
+  </div>
 
+  <script src="script.js"></script>
+</body>
+</html>
