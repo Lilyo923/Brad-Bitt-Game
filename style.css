@@ -49,8 +49,3 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-#creditsText p {
-  font-size: 1em;
-  margin: 5px 0;
-}
