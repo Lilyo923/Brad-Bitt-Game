@@ -2,22 +2,24 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brad Bitt - mais le jeu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brad Bitt, mais le jeu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="title-container">
-    <h1 id="main-title">Brad Bitt</h1>
-    <p id="sub-title">mais le jeu</p>
+  <div class="container">
+    <h1>Brad Bitt</h1>
+    <h2>mais le jeu</h2>
+    <div class="menu">
+      <button id="startBtn">Commencer</button>
+      <button id="continueBtn" disabled>Continuer</button>
+      <button id="settingsBtn">Paramètres</button>
+      <button id="creditsBtn">Crédits</button>
+      <button id="muteBtn">Mute</button>
+    </div>
   </div>
-  
-  <div class="menu" id="menu">
-    <button id="new-game">Nouvelle Partie</button>
-    <button id="continue" disabled>Continuer</button>
-    <button id="settings">Paramètres</button>
-    <button id="credits">Crédits</button>
-  </div>
+
+  <audio id="bgMusic" src="https://www.dropbox.com/scl/fi/z4i33e10xspc5ip1xlvd3/menu.mp3?rlkey=0l8nvmfnqv7fkwiwt581l7j8y&st=af3grmuo&raw=1" loop autoplay></audio>
 
   <script src="script.js"></script>
 </body>
