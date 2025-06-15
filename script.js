@@ -5,8 +5,6 @@ const muteButton = document.getElementById('muteButton');
 
 const audio = new Audio("https://www.dropbox.com/scl/fi/z4i33e10xspc5ip1xlvd3/menu.mp3?rlkey=0l8nvmfnqv7fkwiwt581l7j8y&raw=1");
 audio.loop = true;
-music.play();
-
 
 title.addEventListener('click', () => {
   // Réduire le titre
@@ -27,19 +25,4 @@ title.addEventListener('click', () => {
 muteButton.addEventListener('click', () => {
   audio.muted = !audio.muted;
   muteButton.textContent = audio.muted ? 'Unmute' : 'Mute';
-});
-
-const creditsBtn = document.getElementById('creditsBtn');
-const creditsText = document.getElementById('creditsText');
-
-creditsBtn.addEventListener('click', () => {
-  if (creditsText.style.display === 'none') {
-    creditsText.innerHTML = `
-      <p>Site imaginé par Hippolyte & Brad Bitt.</p>
-      <p>Musique : échantillons créés par Mixvibes, assemblés par Lilyo.</p>
-    `;
-    creditsText.style.display = 'block';
-  } else {
-    creditsText.style.display = 'none';
-  }
 });
