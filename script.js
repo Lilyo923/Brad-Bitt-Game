@@ -26,3 +26,18 @@ muteButton.addEventListener('click', () => {
   audio.muted = !audio.muted;
   muteButton.textContent = audio.muted ? 'Unmute' : 'Mute';
 });
+
+const creditsBtn = document.getElementById('creditsBtn');
+const creditsText = document.getElementById('creditsText');
+
+creditsBtn.addEventListener('click', () => {
+  if (creditsText.style.display === 'none') {
+    creditsText.innerHTML = `
+      <p>Site imaginé par Hippolyte.</p>
+      <p>Musique : échantillons créés par Remixlive, assemblés par Lilyo.</p>
+    `;
+    creditsText.style.display = 'block';
+  } else {
+    creditsText.style.display = 'none';
+  }
+});
