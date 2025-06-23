@@ -154,3 +154,67 @@ if (/Mobi|Android/i.test(navigator.userAgent)) {
     joystick.distance = 0;
   });
 }
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Représente Brad Bitt
+const player = {
+  x: 50,
+  y: 300,
+  width: 40,
+  height: 40,
+  color: 'red',
+  vx: 0,
+  vy: 0,
+  speed: 2,
+  jumping: false
+};
+
+// Gère les touches
+const keys = {
+  left: false,
+  right: false
+};
+
+// Boucle de jeu
+function gameLoop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Déplacement horizontal
+  if (keys.left) player.x -= player.speed;
+  if (keys.right) player.x += player.speed;
+
+  // Gravité
+  if (player.y < 300) {
+    player.vy += 0.5; // gravité
+    player.y += player.vy;
+  } else {
+    player.vy = 0;
+    player.jumping = false;
+    player.y = 300;
+  }
+
+  // Dessin du personnage
+  ctx.fillStyle = player.color;
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+
+  requestAnimationFrame(gameLoop);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === "ArrowLeft") keys.left = true;
+  if (e.key === "ArrowRight") keys.right = true;
+  if (e.key === " " && !player.jumping) {
+    player.vy = -10;
+    player.jumping = true;
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  if (e.key === "ArrowLeft") keys.left = false;
+  if (e.key === "ArrowRight") keys.right = false;
+});
+
+// Démarre la boucle de jeu
+gameLoop();
