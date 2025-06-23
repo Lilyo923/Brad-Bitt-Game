@@ -41,3 +41,7 @@ creditsBtn.addEventListener('click', () => {
     creditsText.style.display = 'none';
   }
 });
+
+document.getElementById('newGameBtn')?.addEventListener('click', () => {
+  window.location.href = 'game/game.html';
+});
