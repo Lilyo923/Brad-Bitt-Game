@@ -117,3 +117,40 @@ function update() {
 }
 
 update();
+
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+  // On est sur mobile → créer le joystick
+  const joystickZone = document.createElement('div');
+  joystickZone.id = "joystickZone";
+  joystickZone.style.position = "absolute";
+  joystickZone.style.bottom = "50px";
+  joystickZone.style.left = "50px";
+  joystickZone.style.width = "150px";
+  joystickZone.style.height = "150px";
+  joystickZone.style.zIndex = "1000";
+  document.body.appendChild(joystickZone);
+
+  const joystickManager = nipplejs.create({
+    zone: joystickZone,
+    mode: 'static',
+    position: { left: '60px', bottom: '60px' },
+    color: 'red'
+  });
+
+  window.joystick = {
+    angle: 0,
+    distance: 0
+  };
+
+  joystickManager.on('move', (evt, data) => {
+    if (data && data.angle) {
+      joystick.angle = data.angle.degree;
+      joystick.distance = data.distance;
+    }
+  });
+
+  joystickManager.on('end', () => {
+    joystick.angle = 0;
+    joystick.distance = 0;
+  });
+}
