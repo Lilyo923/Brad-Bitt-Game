@@ -33,7 +33,7 @@ const creditsText = document.getElementById('creditsText');
 creditsBtn.addEventListener('click', () => {
   if (creditsText.style.display === 'none') {
     creditsText.innerHTML = `
-      <p>Site imaginé par Hippolyte & Brad Bitt.</p>
+      <p>Site imaginé par Brad Bitt.</p>
       <p>Musique : échantillons créés par Mixvibes, assemblés par Lilyo.</p>
     `;
     creditsText.style.display = 'block';
