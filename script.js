@@ -3,7 +3,7 @@ const subtitle = document.getElementById('gameSubtitle');
 const menu = document.getElementById('menu');
 const muteButton = document.getElementById('muteButton');
 
-const audio = new Audio("https://www.dropbox.com/scl/fi/z4i33e10xspc5ip1xlvd3/menu.mp3?rlkey=0l8nvmfnqv7fkwiwt581l7j8y&raw=1");
+const audio = new Audio("https://raw.githubusercontent.com/Lilyo923/Brad-Bitt-Game-OST/main/menu.mp3");
 audio.loop = true;
 
 title.addEventListener('click', () => {
