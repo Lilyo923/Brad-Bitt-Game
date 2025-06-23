@@ -218,3 +218,13 @@ document.addEventListener('keyup', (e) => {
 
 // Démarre la boucle de jeu
 gameLoop();
+
+const jumpButton = document.getElementById('jumpButton');
+if (jumpButton) {
+  jumpButton.addEventListener('click', () => {
+    if (!player.jumping) {
+      player.vy = -10;
+      player.jumping = true;
+    }
+  });
+}
