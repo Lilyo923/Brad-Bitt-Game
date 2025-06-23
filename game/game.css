@@ -50,3 +50,32 @@ canvas {
 .joystick-hidden {
   display: none;
 }
+
+.jump-button {
+  position: absolute;
+  bottom: 60px;
+  right: 50px;
+  width: 60px;
+  height: 60px;
+  background-color: #ff4d4d;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%; /* bouton rond */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  z-index: 1000;
+  display: none; /* par défaut masqué sauf mobile */
+  transition: background-color 0.3s ease;
+}
+
+.jump-button:hover {
+  background-color: #e63939;
+}
+
+@media (max-width: 768px) {
+  .jump-button {
+    display: block;
+  }
+}
