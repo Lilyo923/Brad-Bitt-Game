@@ -5,6 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Brad Bitt - Le Jeu</title>
   <link rel="stylesheet" href="game.css" />
+  <style>
+    #joystickZone {
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      width: 150px;
+      height: 150px;
+      z-index: 10;
+    }
+
+    #jumpButton {
+      position: absolute;
+      bottom: 60px;
+      right: 50px;
+      width: 60px;
+      height: 60px;
+      background-color: #ff4d4d;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      display: none;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      #jumpButton {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="game-container">
@@ -13,23 +47,19 @@
     <p class="info">Utilise les touches directionnelles pour te déplacer (ou joystick si sur mobile)</p>
   </div>
 
-  <!-- Bouton de saut -->
-  <button id="jumpButton" class="jump-button">⬆️</button>
+  <!-- Bouton de saut (mobile uniquement) -->
+  <button id="jumpButton">⬆️</button>
 
   <!-- Zone du joystick -->
   <div id="joystickZone"></div>
 
-  <!-- SCRIPTS -->
+  <!-- Librairie + Script du jeu -->
   <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"></script>
   <script src="game.js"></script>
 
   <script>
     const joystickZone = document.getElementById("joystickZone");
-    joystickZone.style.position = "absolute";
-    joystickZone.style.bottom = "50px";
-    joystickZone.style.left = "50px";
-    joystickZone.style.width = "150px";
-    joystickZone.style.height = "150px";
+    const jumpButton = document.getElementById("jumpButton");
 
     const joystickManager = nipplejs.create({
       zone: joystickZone,
@@ -54,6 +84,13 @@
       joystick.angle = 0;
       joystick.distance = 0;
     });
+
+    // Associer le bouton saut à la fonction jump définie dans game.js
+    if (jumpButton) {
+      jumpButton.addEventListener('click', () => {
+        if (typeof jump === 'function') jump();
+      });
+    }
   </script>
 </body>
 </html>
