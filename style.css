@@ -78,3 +78,23 @@ button:disabled {
   font-size: 0.9em;
   color: #777;
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .version-label {
+    font-size: 0.8em;
+    bottom: 20px;
+  }
+}
