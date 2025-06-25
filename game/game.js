@@ -5,10 +5,10 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Représentation du joueur (Brad Bitt)
+// Représentation du joueur
 const player = {
   x: 100,
-  y: canvas.height - 100,
+  y: canvas.height - 140, // un peu au-dessus du sol
   width: 40,
   height: 40,
   color: '#ff4d4d',
@@ -19,11 +19,17 @@ const player = {
   jumping: false
 };
 
+// Sol
+const ground = {
+  y: canvas.height - 100,
+  height: 100,
+  color: '#333'
+};
+
 // Touches clavier
 const keys = {
   left: false,
-  right: false,
-  up: false
+  right: false
 };
 
 // Gestion du clavier
@@ -38,37 +44,12 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowRight" || e.key === "d") keys.right = false;
 });
 
-// Saut
+// Fonction saut
 function jump() {
   if (!player.jumping) {
-    player.vy = -10;
+    player.vy = -12;
     player.jumping = true;
   }
-}
-
-// Joystick (si mobile)
-if (/Mobi|Android/i.test(navigator.userAgent)) {
-  window.joystick = { angle: 0, distance: 0 };
-
-  const joystickZone = document.getElementById('joystickZone');
-  const manager = nipplejs.create({
-    zone: joystickZone,
-    mode: 'static',
-    position: { left: '60px', bottom: '60px' },
-    color: 'red'
-  });
-
-  manager.on('move', (evt, data) => {
-    if (data && data.angle) {
-      window.joystick.angle = data.angle.degree;
-      window.joystick.distance = data.distance;
-    }
-  });
-
-  manager.on('end', () => {
-    window.joystick.angle = 0;
-    window.joystick.distance = 0;
-  });
 }
 
 // Bouton saut mobile
@@ -77,10 +58,51 @@ if (jumpButton) {
   jumpButton.addEventListener('click', jump);
 }
 
-// Mouvements
-function handleMovement() {
+// Mouvement + gravité
+function update() {
+  // Gérer les touches clavier
   player.vx = 0;
-
-  // Clavier
   if (keys.left) player.vx = -player.speed;
-  if (keys.right) player.vx = player.speed
+  if (keys.right) player.vx = player.speed;
+
+  // Gérer le joystick mobile
+  if (window.joystick && window.joystick.distance > 10) {
+    const angle = window.joystick.angle;
+    if (angle > 135 && angle < 225) player.vx = -player.speed; // gauche
+    if (angle < 45 || angle > 315) player.vx = player.speed;  // droite
+  }
+
+  // Appliquer le mouvement
+  player.x += player.vx;
+  player.y += player.vy;
+  player.vy += player.gravity;
+
+  // Collision avec le sol
+  if (player.y + player.height >= ground.y) {
+    player.y = ground.y - player.height;
+    player.vy = 0;
+    player.jumping = false;
+  }
+}
+
+// Affichage
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Sol
+  ctx.fillStyle = ground.color;
+  ctx.fillRect(0, ground.y, canvas.width, ground.height);
+
+  // Joueur
+  ctx.fillStyle = player.color;
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+
+// Boucle principale
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
