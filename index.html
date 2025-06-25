@@ -11,17 +11,30 @@
     <h1 id="gameTitle">Brad Bitt</h1>
     <h2 id="gameSubtitle">mais le jeu</h2>
 
-    <div id="menu" style="display: none;">
+    <div id="menu" class="fade">
       <button id="newGameBtn">Nouvelle Partie</button>
       <button id="continueBtn" disabled>Continuer</button>
-      <button>Paramètres</button>
+      <button id="settingsBtn">Paramètres</button>
+      <button id="achievementsBtn">Succès</button>
       <button id="creditsBtn">Crédits</button>
     </div>
 
-    <button id="muteButton" style="display: none;">Mute</button>
-    <div id="creditsText" style="display: none; margin-top: 20px;">
-  <!-- On remplira ça via JS -->
-</div>
+    <div id="settingsMenu" class="fade hidden">
+      <h3>Paramètres</h3>
+      <button id="muteButton">Mute</button>
+      <button id="backToMenu">Retour</button>
+    </div>
+
+    <div id="creditsText" class="fade hidden">
+      <p>Site imaginé par Brad Bitt.</p>
+      <p>Musique : échantillons créés par Mixvibes, assemblés par Lilyo.</p>
+    </div>
+
+    <div id="achievementsText" class="fade hidden">
+      <p>Les succès seront disponibles dans une prochaine mise à jour.</p>
+    </div>
+
+    <div class="version-label">Version Beta 0.1</div>
   </div>
 
   <script src="script.js"></script>
