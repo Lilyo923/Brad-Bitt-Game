@@ -47,7 +47,7 @@ document.addEventListener("keyup", (e) => {
 // Fonction saut
 function jump() {
   if (!player.jumping) {
-    player.vy = -12;
+    player.vy = -10;
     player.jumping = true;
   }
 }
