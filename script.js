@@ -57,5 +57,7 @@ achievementsBtn.addEventListener('click', () => {
 
 // Lancement du jeu
 document.getElementById('newGameBtn')?.addEventListener('click', () => {
+  audio.pause();
+audio.currentTime = 0;
   window.location.href = 'game/game.html';
 });
