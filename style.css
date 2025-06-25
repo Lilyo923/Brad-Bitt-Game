@@ -9,11 +9,13 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
 .container {
   width: 90%;
   max-width: 600px;
+  position: relative;
 }
 
 h1 {
@@ -43,6 +45,11 @@ button {
   background: #555;
   color: #fff;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #777;
 }
 
 button:disabled {
@@ -50,7 +57,24 @@ button:disabled {
   cursor: not-allowed;
 }
 
-#creditsText p {
-  font-size: 1em;
-  margin: 5px 0;
+.fade {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+.version-label {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 0.9em;
+  color: #777;
 }
