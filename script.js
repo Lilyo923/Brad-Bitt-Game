@@ -61,3 +61,9 @@ document.getElementById('newGameBtn')?.addEventListener('click', () => {
 audio.currentTime = 0;
   window.location.href = 'game/game.html';
 });
+
+const difficultySelect = document.getElementById('difficultySelect');
+difficultySelect.addEventListener('change', () => {
+  const difficulty = difficultySelect.value;
+  localStorage.setItem('difficulty', difficulty);
+});
