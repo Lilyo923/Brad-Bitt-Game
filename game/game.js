@@ -98,6 +98,27 @@ function draw() {
   ctx.fillRect(player.x, player.y, player.width, player.height);
 }
 
+// Plateformes
+const platforms = [
+  { x: 250, y: canvas.height - 150, width: 100, height: 10 },
+  { x: 400, y: canvas.height - 200, width: 100, height: 10, hasSpikes: true },
+  { x: 600, y: canvas.height - 270, width: 100, height: 10 }
+];
+
+// Pics sur la 2ème plateforme
+let spikesActive = true;
+
+// Bouton pour désactiver les pics
+const button = { x: 700, y: canvas.height - 40, width: 30, height: 30, pressed: false };
+
+// Pièces
+const coins = [
+  { x: 300, y: canvas.height - 60, collected: false },
+  { x: 360, y: canvas.height - 60, collected: false },
+  { x: 420, y: canvas.height - 60, collected: false },
+];
+let coinCount = 0;
+
 // Boucle principale
 function gameLoop() {
   update();
