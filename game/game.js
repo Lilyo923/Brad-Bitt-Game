@@ -127,3 +127,54 @@ function gameLoop() {
 }
 
 gameLoop();
+// Gravité + sol
+player.vy += player.gravity;
+player.y += player.vy;
+player.x += player.vx;
+
+// Collision avec sol
+if (player.y + player.height > canvas.height) {
+  player.y = canvas.height - player.height;
+  player.vy = 0;
+  player.jumping = false;
+}
+
+// Collision avec plateformes
+platforms.forEach(p => {
+  if (
+    player.x + player.width > p.x &&
+    player.x < p.x + p.width &&
+    player.y + player.height > p.y &&
+    player.y + player.height < p.y + p.height + 10 &&
+    player.vy >= 0
+  ) {
+    player.y = p.y - player.height;
+    player.vy = 0;
+    player.jumping = false;
+  }
+});
+
+// Collision avec bouton
+if (
+  player.x + player.width > button.x &&
+  player.x < button.x + button.width &&
+  player.y + player.height > button.y &&
+  player.y < button.y + button.height
+) {
+  button.pressed = true;
+  spikesActive = false;
+}
+
+// Collision avec pièces
+coins.forEach((coin) => {
+  if (
+    !coin.collected &&
+    player.x + player.width > coin.x &&
+    player.x < coin.x + 20 &&
+    player.y + player.height > coin.y &&
+    player.y < coin.y + 20
+  ) {
+    coin.collected = true;
+    coinCount++;
+  }
+});
