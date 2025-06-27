@@ -215,3 +215,8 @@ coins.forEach((coin) => {
     coinCount++;
   }
 });
+
+if (player.x > 700 && player.y < platforms[2].y) {
+  console.log("Scène suivante !");
+  // Ici tu pourras lancer une autre fonction ou charger un autre niveau
+}
