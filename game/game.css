@@ -51,7 +51,7 @@ canvas {
   display: none;
 }
 
-.jump-button {
+#jumpButton {
   position: absolute;
   bottom: 60px;
   right: 50px;
@@ -59,15 +59,13 @@ canvas {
   height: 60px;
   background-color: #ff4d4d;
   color: white;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   border: none;
-  border-radius: 50%; /* bouton rond */
+  border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  z-index: 1000;
-  display: none; /* par défaut masqué sauf mobile */
-  transition: background-color 0.3s ease;
+  z-index: 10;
 }
 
 .jump-button:hover {
