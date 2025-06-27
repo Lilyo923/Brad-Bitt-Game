@@ -74,8 +74,12 @@ canvas {
   background-color: #e63939;
 }
 
-@media (max-width: 768px) {
-  .jump-button {
-    display: block;
+#jumpButton {
+  display: none; /* caché par défaut */
+}
+
+@media only screen and (max-width: 1024px) {
+  #jumpButton {
+    display: block !important;
   }
 }
