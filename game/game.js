@@ -88,6 +88,43 @@ function update() {
 // Affichage
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Dessiner joueur
+ctx.fillStyle = player.color;
+ctx.fillRect(player.x, player.y, player.width, player.height);
+
+// Dessiner plateformes
+platforms.forEach(p => {
+  ctx.fillStyle = "#ccc";
+  ctx.fillRect(p.x, p.y, p.width, p.height);
+
+  if (p.hasSpikes && spikesActive) {
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    ctx.lineTo(p.x + p.width / 2, p.y - 20);
+    ctx.lineTo(p.x + p.width, p.y);
+    ctx.fill();
+  }
+});
+
+// Dessiner bouton
+ctx.fillStyle = button.pressed ? "green" : "orange";
+ctx.fillRect(button.x, button.y, button.width, button.height);
+
+// Dessiner pièces
+coins.forEach((coin) => {
+  if (!coin.collected) {
+    ctx.fillStyle = "gold";
+    ctx.beginPath();
+    ctx.arc(coin.x, coin.y, 10, 0, Math.PI * 2);
+    ctx.fill();
+  }
+});
+
+// Afficher compteur de pièces
+ctx.fillStyle = "white";
+ctx.font = "20px Arial";
+ctx.fillText("Pièces : " + coinCount, 20, 30);
 
   // Sol
   ctx.fillStyle = ground.color;
