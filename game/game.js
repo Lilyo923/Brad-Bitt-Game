@@ -1,14 +1,13 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const sceneHeight = 600;
 canvas.width = window.innerWidth;
-canvas.height = sceneHeight;
+canvas.height = window.innerHeight;
 
 // Joueur
 const player = {
   x: 100,
-  y: sceneHeight - 140,
+  y: canvas.height - 140,
   width: 40,
   height: 40,
   color: '#ff4d4d',
@@ -21,7 +20,7 @@ const player = {
 
 // Sol
 const ground = {
-  y: sceneHeight - 100,
+  y: canvas.height - 100,
   height: 100,
   color: '#333'
 };
@@ -34,6 +33,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight" || e.key === "d") keys.right = true;
   if ([" ", "ArrowUp", "z"].includes(e.key)) jump();
 });
+
 document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowLeft" || e.key === "q") keys.left = false;
   if (e.key === "ArrowRight" || e.key === "d") keys.right = false;
@@ -47,7 +47,6 @@ function jump() {
   }
 }
 
-// Mobile
 const jumpButton = document.getElementById('jumpButton');
 if (jumpButton) {
   jumpButton.addEventListener('click', jump);
@@ -55,21 +54,23 @@ if (jumpButton) {
 
 // Plateformes
 const platforms = [
-  { x: 250, y: sceneHeight - 150, width: 120, height: 10 },
-  { x: 420, y: sceneHeight - 220, width: 120, height: 10, hasSpikes: true },
-  { x: 620, y: sceneHeight - 300, width: 120, height: 10 }
+  { x: 250, y: canvas.height - 150, width: 120, height: 10 },
+  { x: 420, y: canvas.height - 220, width: 120, height: 10, hasSpikes: true },
+  { x: 620, y: canvas.height - 300, width: 120, height: 10 }
 ];
 
+// Pics
 let spikesActive = true;
 
-const button = { x: 700, y: sceneHeight - 40, width: 30, height: 30, pressed: false };
+// Bouton désactivation pics
+const button = { x: 700, y: canvas.height - 40, width: 30, height: 30, pressed: false };
 
+// Pièces
 const coins = [
-  { x: 300, y: sceneHeight - 160, collected: false },
-  { x: 360, y: sceneHeight - 160, collected: false },
-  { x: 420, y: sceneHeight - 160, collected: false }
+  { x: 300, y: canvas.height - 60, collected: false },
+  { x: 360, y: canvas.height - 60, collected: false },
+  { x: 420, y: canvas.height - 60, collected: false }
 ];
-
 let coinCount = 0;
 
 // Update
@@ -78,7 +79,6 @@ function update() {
   if (keys.left) player.vx = -player.speed;
   if (keys.right) player.vx = player.speed;
 
-  // Joystick mobile
   if (window.joystick && window.joystick.distance > 10) {
     const angle = window.joystick.angle;
     if (angle > 135 && angle < 225) player.vx = -player.speed;
@@ -96,7 +96,7 @@ function update() {
     player.jumping = false;
   }
 
-  // Plateformes
+  // Collision plateformes
   platforms.forEach(p => {
     if (
       player.x + player.width > p.x &&
@@ -119,7 +119,7 @@ function update() {
     player.y < button.y + button.height
   ) {
     button.pressed = true;
-    spikesActive = false;`
+    spikesActive = false;
   }
 
   // Pièces
@@ -136,13 +136,14 @@ function update() {
     }
   });
 
-  // Passage de niveau
+  // Passage de scène
   if (player.x > 700 && player.y < platforms[2].y) {
     console.log("Scène suivante !");
+    // Placeholder
   }
 }
 
-// Draw
+// Affichage
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -154,6 +155,7 @@ function draw() {
   platforms.forEach(p => {
     ctx.fillStyle = "#ccc";
     ctx.fillRect(p.x, p.y, p.width, p.height);
+
     if (p.hasSpikes && spikesActive) {
       ctx.fillStyle = "red";
       ctx.beginPath();
@@ -178,7 +180,7 @@ function draw() {
     }
   });
 
-  // Score
+  // Compteur
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("Pièces : " + coinCount, 20, 30);
@@ -188,7 +190,7 @@ function draw() {
   ctx.fillRect(player.x, player.y, player.width, player.height);
 }
 
-// Boucle
+// Boucle principale
 function gameLoop() {
   update();
   draw();
