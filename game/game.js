@@ -67,9 +67,9 @@ const button = { x: 700, y: canvas.height - 140, width: 30, height: 30, pressed:
 
 // Pièces
 const coins = [
-  { x: 300, y: canvas.height - 160, collected: false },
-  { x: 360, y: canvas.height - 160, collected: false },
-  { x: 420, y: canvas.height - 160, collected: false }
+  { x: 300, y: canvas.height - 100, collected: false },
+  { x: 360, y: canvas.height - 100, collected: false },
+  { x: 420, y: canvas.height - 100, collected: false }
 ];
 let coinCount = 0;
 
