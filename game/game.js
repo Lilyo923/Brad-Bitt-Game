@@ -65,9 +65,9 @@ let spikesActive = true;
 const button = { x: 700, y: sceneHeight - 40, width: 30, height: 30, pressed: false };
 
 const coins = [
-  { x: 300, y: sceneHeight - 60, collected: false },
-  { x: 360, y: sceneHeight - 60, collected: false },
-  { x: 420, y: sceneHeight - 60, collected: false }
+  { x: 300, y: sceneHeight - 160, collected: false },
+  { x: 360, y: sceneHeight - 160, collected: false },
+  { x: 420, y: sceneHeight - 160, collected: false }
 ];
 
 let coinCount = 0;
@@ -119,7 +119,7 @@ function update() {
     player.y < button.y + button.height
   ) {
     button.pressed = true;
-    spikesActive = false;
+    spikesActive = false;`
   }
 
   // Pièces
