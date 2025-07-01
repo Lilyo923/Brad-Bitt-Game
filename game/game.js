@@ -39,7 +39,6 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowRight" || e.key === "d") keys.right = false;
 });
 
-// Saut
 function jump() {
   if (!player.jumping) {
     player.vy = -10;
@@ -52,28 +51,25 @@ if (jumpButton) {
   jumpButton.addEventListener('click', jump);
 }
 
-// Plateformes
+// Plateformes élargies
 const platforms = [
-  { x: 250, y: canvas.height - 150, width: 120, height: 10 },
-  { x: 420, y: canvas.height - 220, width: 120, height: 10, hasSpikes: true },
-  { x: 620, y: canvas.height - 300, width: 120, height: 10 }
+  { x: 250, y: canvas.height - 150, width: 180, height: 12 },
+  { x: 500, y: canvas.height - 230, width: 180, height: 12, hasSpikes: true },
+  { x: 800, y: canvas.height - 310, width: 200, height: 12 }
 ];
 
-// Pics
 let spikesActive = true;
 
-// Bouton désactivation pics
-const button = { x: 700, y: canvas.height - 40, width: 30, height: 30, pressed: false };
+const button = { x: 400, y: ground.y - 30, width: 30, height: 30, pressed: false };
 
-// Pièces
+// Pièces rapprochées sur les plateformes
 const coins = [
-  { x: 300, y: canvas.height - 60, collected: false },
-  { x: 360, y: canvas.height - 60, collected: false },
-  { x: 420, y: canvas.height - 60, collected: false }
+  { x: 270, y: canvas.height - 180, collected: false },
+  { x: 520, y: canvas.height - 260, collected: false },
+  { x: 820, y: canvas.height - 340, collected: false }
 ];
 let coinCount = 0;
 
-// Update
 function update() {
   player.vx = 0;
   if (keys.left) player.vx = -player.speed;
@@ -96,7 +92,7 @@ function update() {
     player.jumping = false;
   }
 
-  // Collision plateformes
+  // Plateformes
   platforms.forEach(p => {
     if (
       player.x + player.width > p.x &&
@@ -108,6 +104,25 @@ function update() {
       player.y = p.y - player.height;
       player.vy = 0;
       player.jumping = false;
+    }
+
+    // ❗ Si pics actifs, vérifier collision mortelle
+    if (p.hasSpikes && spikesActive) {
+      const spikeHeight = 20;
+      const spikeY = p.y - spikeHeight;
+      if (
+        player.x + player.width > p.x &&
+        player.x < p.x + p.width &&
+        player.y + player.height > spikeY &&
+        player.y < p.y &&
+        player.vy >= 0
+      ) {
+        // "Mort" => repositionner au départ
+        player.x = 100;
+        player.y = canvas.height - 140;
+        player.vy = 0;
+        player.jumping = false;
+      }
     }
   });
 
@@ -136,14 +151,12 @@ function update() {
     }
   });
 
-  // Passage de scène
-  if (player.x > 700 && player.y < platforms[2].y) {
+  // Transition
+  if (player.x > 1000 && player.y < platforms[2].y) {
     console.log("Scène suivante !");
-    // Placeholder
   }
 }
 
-// Affichage
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -175,25 +188,4 @@ function draw() {
     if (!coin.collected) {
       ctx.fillStyle = "gold";
       ctx.beginPath();
-      ctx.arc(coin.x, coin.y, 10, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  });
-
-  // Compteur
-  ctx.fillStyle = "white";
-  ctx.font = "20px Arial";
-  ctx.fillText("Pièces : " + coinCount, 20, 30);
-
-  // Joueur
-  ctx.fillStyle = player.color;
-  ctx.fillRect(player.x, player.y, player.width, player.height);
-}
-
-// Boucle principale
-function gameLoop() {
-  update();
-  draw();
-  requestAnimationFrame(gameLoop);
-}
-gameLoop();
+      ctx.arc(coin.x, coin.y, 10, 0, Math
