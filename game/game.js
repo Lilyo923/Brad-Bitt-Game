@@ -63,13 +63,13 @@ const platforms = [
 let spikesActive = true;
 
 // Bouton désactivation pics
-const button = { x: 700, y: canvas.height - 40, width: 30, height: 30, pressed: false };
+const button = { x: 700, y: canvas.height - 140, width: 30, height: 30, pressed: false };
 
 // Pièces
 const coins = [
-  { x: 300, y: canvas.height - 60, collected: false },
-  { x: 360, y: canvas.height - 60, collected: false },
-  { x: 420, y: canvas.height - 60, collected: false }
+  { x: 300, y: canvas.height - 160, collected: false },
+  { x: 360, y: canvas.height - 160, collected: false },
+  { x: 420, y: canvas.height - 160, collected: false }
 ];
 let coinCount = 0;
 
